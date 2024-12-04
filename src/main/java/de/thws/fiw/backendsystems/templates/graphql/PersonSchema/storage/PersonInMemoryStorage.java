@@ -22,33 +22,44 @@
  * SOFTWARE.
  */
 
-package de.thws.fiw.backendsystems.templates.graphql.resolvers;
+package de.thws.fiw.backendsystems.templates.graphql.PersonSchema.storage;
 
-import de.thws.fiw.backendsystems.templates.graphql.models.Gender;
-import de.thws.fiw.backendsystems.templates.graphql.models.Person;
-import de.thws.fiw.backendsystems.templates.graphql.storage.PersonInMemoryStorage;
-import graphql.kickstart.tools.GraphQLQueryResolver;
+import com.github.javafaker.Faker;
+import de.thws.fiw.backendsystems.templates.graphql.PersonSchema.models.Address;
+import de.thws.fiw.backendsystems.templates.graphql.PersonSchema.models.Person;
 
-import java.util.List;
-
-public class PersonQueryResolver implements GraphQLQueryResolver
+public class PersonInMemoryStorage extends AbstractInMemoryStorage<Person>
 {
-	public Person person( final long id )
+	private static PersonInMemoryStorage INSTANCE;
+
+	public static final PersonInMemoryStorage getInstance( )
 	{
-		return PersonInMemoryStorage.getInstance( ).readById( id ).orElseGet( null );
+		if ( INSTANCE == null )
+		{
+			INSTANCE = new PersonInMemoryStorage( );
+		}
+
+		return INSTANCE;
 	}
 
-	public List<Person> persons( )
+	public void populateDatabase()
 	{
-		return PersonInMemoryStorage.getInstance( ).readByPredicate( p -> true );
-	}
+		final Faker faker = new Faker( );
+		for( int i=0; i<100; i++ )
+		{
+			final Person person = new Person();
+			person.setFirstName( faker.address( ).firstName( ) );
+			person.setLastName( faker.address( ).lastName( ) );
 
-	public List<Person> personsByName( final String lastName )
-	{
-		return PersonInMemoryStorage.getInstance( ).readByPredicate( p -> p.getLastName( ).equals( lastName ) );
-	}
+			final Address address = new Address();
+			person.setAddress( address );
 
-//	public List<Person> personsByGender(final Gender gender ){
-//		return PersonInMemoryStorage.getInstance().readByPredicate(p -> p.getGender().equals(gender));
-//	} personsByGender(gender: Gender!): [Person!]!
+			address.setName("Home");
+			address.setCity( faker.address( ).cityName( ) );
+			address.setStreet( faker.address().streetAddress() );
+			address.setZipCode( faker.address().zipCode( ) );
+
+			create( person );
+		}
+	}
 }

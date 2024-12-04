@@ -22,55 +22,61 @@
  * SOFTWARE.
  */
 
-package de.thws.fiw.backendsystems.templates.graphql.models;
+package de.thws.fiw.backendsystems.templates.graphql.PersonSchema.models;
 
-public class Address
+public class Person extends AbstractModel
 {
-	private String name;
+	private String firstName;
 
-	private String street;
+	private String lastName;
 
-	private String city;
+	private Address address;
 
-	private String zipCode;
-
-	public String getName( )
+//	private Gender gender;
+//	gender: Gender
+	public Person( )
 	{
-		return name;
 	}
 
-	public void setName( final String name )
+	public String getFirstName( )
 	{
-		this.name = name;
+		return firstName;
 	}
 
-	public String getStreet( )
+	public void setFirstName( final String firstName )
 	{
-		return street;
+		this.firstName = firstName;
 	}
 
-	public void setStreet( String street )
+	public String getLastName( )
 	{
-		this.street = street;
+		return lastName;
 	}
 
-	public String getCity( )
+	public void setLastName( final String lastName )
 	{
-		return city;
+		this.lastName = lastName;
 	}
 
-	public void setCity( String city )
+	public Address getAddress( )
 	{
-		this.city = city;
+		return address;
 	}
 
-	public String getZipCode( )
+	public void setAddress( final Address address )
 	{
-		return zipCode;
+		this.address = address;
 	}
 
-	public void setZipCode( String zipCode )
-	{
-		this.zipCode = zipCode;
-	}
+//	public Gender getGender() {
+//		return gender;
+//	}
+//
+//	public void setGender(Gender gender) {
+//		this.gender = gender;
+//	}
+//	type Gender
+//{
+//    gender:String!
+//}
 }

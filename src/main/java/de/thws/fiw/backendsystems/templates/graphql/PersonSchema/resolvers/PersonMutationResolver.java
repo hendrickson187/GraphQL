@@ -22,16 +22,13 @@
  * SOFTWARE.
  */
 
-package de.thws.fiw.backendsystems.templates.graphql.resolvers;
+package de.thws.fiw.backendsystems.templates.graphql.PersonSchema.resolvers;
 
-import de.thws.fiw.backendsystems.templates.graphql.models.Address;
-import de.thws.fiw.backendsystems.templates.graphql.models.Gender;
-import de.thws.fiw.backendsystems.templates.graphql.models.Person;
-import de.thws.fiw.backendsystems.templates.graphql.models.PersonInput;
-import de.thws.fiw.backendsystems.templates.graphql.storage.PersonInMemoryStorage;
+import de.thws.fiw.backendsystems.templates.graphql.PersonSchema.models.Address;
+import de.thws.fiw.backendsystems.templates.graphql.PersonSchema.models.Person;
+import de.thws.fiw.backendsystems.templates.graphql.PersonSchema.models.PersonInput;
+import de.thws.fiw.backendsystems.templates.graphql.PersonSchema.storage.PersonInMemoryStorage;
 import graphql.kickstart.tools.GraphQLMutationResolver;
-
-import java.util.Optional;
 
 public class PersonMutationResolver implements GraphQLMutationResolver {
 	public Person create(final String firstName, final String lastName) {

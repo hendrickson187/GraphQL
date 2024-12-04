@@ -22,9 +22,9 @@
  * SOFTWARE.
  */
 
-package de.thws.fiw.backendsystems.templates.graphql.storage;
+package de.thws.fiw.backendsystems.templates.graphql.PersonSchema.storage;
 
-import de.thws.fiw.backendsystems.templates.graphql.models.AbstractModel;
+import de.thws.fiw.backendsystems.templates.graphql.PersonSchema.models.AbstractModel;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;

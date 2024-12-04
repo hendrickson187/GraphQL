@@ -24,8 +24,8 @@
 
 package de.thws.fiw.backendsystems.templates.graphql;
 
-import de.thws.fiw.backendsystems.templates.graphql.resolvers.PersonMutationResolver;
-import de.thws.fiw.backendsystems.templates.graphql.resolvers.PersonQueryResolver;
+import de.thws.fiw.backendsystems.templates.graphql.PersonSchema.resolvers.PersonMutationResolver;
+import de.thws.fiw.backendsystems.templates.graphql.PersonSchema.resolvers.PersonQueryResolver;
 import graphql.kickstart.servlet.GraphQLConfiguration;
 import graphql.kickstart.servlet.GraphQLHttpServlet;
 import graphql.kickstart.tools.SchemaParser;
@@ -36,9 +36,10 @@ import org.apache.commons.io.IOUtils;
 import java.io.IOException;
 
 @WebServlet( name = "ServletExample", urlPatterns = { "/graphql/*" }, loadOnStartup = 1 )
-public class DemoServlet extends GraphQLHttpServlet
+public class
+PersonDemoServlet extends GraphQLHttpServlet
 {
-	public DemoServlet( )
+	public PersonDemoServlet( )
 	{
 		System.out.println("GraphQL Servlet starts" );
 	}

@@ -22,44 +22,32 @@
  * SOFTWARE.
  */
 
-package de.thws.fiw.backendsystems.templates.graphql.storage;
+package de.thws.fiw.backendsystems.templates.graphql.PersonSchema.resolvers;
 
-import com.github.javafaker.Faker;
-import de.thws.fiw.backendsystems.templates.graphql.models.Address;
-import de.thws.fiw.backendsystems.templates.graphql.models.Person;
+import de.thws.fiw.backendsystems.templates.graphql.PersonSchema.models.Person;
+import de.thws.fiw.backendsystems.templates.graphql.PersonSchema.storage.PersonInMemoryStorage;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 
-public class PersonInMemoryStorage extends AbstractInMemoryStorage<Person>
+import java.util.List;
+
+public class PersonQueryResolver implements GraphQLQueryResolver
 {
-	private static PersonInMemoryStorage INSTANCE;
-
-	public static final PersonInMemoryStorage getInstance( )
+	public Person person( final long id )
 	{
-		if ( INSTANCE == null )
-		{
-			INSTANCE = new PersonInMemoryStorage( );
-		}
-
-		return INSTANCE;
+		return PersonInMemoryStorage.getInstance( ).readById( id ).orElseGet( null );
 	}
 
-	public void populateDatabase()
+	public List<Person> persons( )
 	{
-		final Faker faker = new Faker( );
-		for( int i=0; i<100; i++ )
-		{
-			final Person person = new Person();
-			person.setFirstName( faker.address( ).firstName( ) );
-			person.setLastName( faker.address( ).lastName( ) );
-
-			final Address address = new Address();
-			person.setAddress( address );
-
-			address.setName("Home");
-			address.setCity( faker.address( ).cityName( ) );
-			address.setStreet( faker.address().streetAddress() );
-			address.setZipCode( faker.address().zipCode( ) );
-
-			create( person );
-		}
+		return PersonInMemoryStorage.getInstance( ).readByPredicate( p -> true );
 	}
+
+	public List<Person> personsByName( final String lastName )
+	{
+		return PersonInMemoryStorage.getInstance( ).readByPredicate( p -> p.getLastName( ).equals( lastName ) );
+	}
+
+//	public List<Person> personsByGender(final Gender gender ){
+//		return PersonInMemoryStorage.getInstance().readByPredicate(p -> p.getGender().equals(gender));
+//	} personsByGender(gender: Gender!): [Person!]!
 }

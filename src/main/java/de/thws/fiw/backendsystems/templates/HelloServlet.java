@@ -24,7 +24,7 @@
 
 package de.thws.fiw.backendsystems.templates;
 
-import de.thws.fiw.backendsystems.templates.graphql.storage.PersonInMemoryStorage;
+import de.thws.fiw.backendsystems.templates.graphql.PersonSchema.storage.PersonInMemoryStorage;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
