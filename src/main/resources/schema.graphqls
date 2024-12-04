@@ -1,0 +1,40 @@
+type Query
+{
+    person( id: Int! ): Person
+    persons: [Person!]!
+    personsByName( lastName: String! ): [Person!]!
+
+}
+
+type Mutation
+{
+    create( firstName: String!, lastName: String! ): Person
+    update( person: PersonInput! ) : Person
+    delete( id: Int! ) : Boolean
+
+}
+
+input PersonInput
+{
+    id: Int!
+    firstName: String!
+    lastName: String!
+}
+
+type Person
+{
+    id: Int!
+    firstName: String!
+    lastName: String!
+    address: Address
+
+}
+
+type Address
+{
+    name: String!
+    street: String!
+    city: String!
+    zipCode: String!
+}
+
