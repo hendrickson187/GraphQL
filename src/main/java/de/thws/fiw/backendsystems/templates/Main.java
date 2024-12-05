@@ -24,6 +24,7 @@
 
 package de.thws.fiw.backendsystems.templates;
 
+import de.thws.fiw.backendsystems.templates.graphql.BookSchema.servlet.BookServlet;
 import de.thws.fiw.backendsystems.templates.graphql.PersonDemoServlet;
 import org.eclipse.jetty.ee10.servlet.ServletContextHandler;
 import org.eclipse.jetty.ee10.servlet.ServletHolder;
@@ -40,7 +41,8 @@ public class Main
 		server.setHandler( context );
 
 		context.addServlet( new ServletHolder( new HelloServlet( ) ), "/filldatabase" );
-		context.addServlet( new ServletHolder( new PersonDemoServlet( ) ), "/graphql" );
+		context.addServlet( new ServletHolder( new PersonDemoServlet( ) ), "/persongraphql" );
+		context.addServlet(new ServletHolder(new BookServlet()), "/booksgraphql");
 
 		server.start( );
 

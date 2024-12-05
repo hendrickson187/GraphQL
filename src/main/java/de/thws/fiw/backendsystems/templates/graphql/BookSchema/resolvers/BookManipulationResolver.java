@@ -10,7 +10,7 @@ import graphql.kickstart.tools.GraphQLMutationResolver;
 public class BookManipulationResolver implements GraphQLMutationResolver {
 
     public Book create(final BookInput bookI){
-        System.out.println("test");
+        System.out.println("Create started");
         Book neu= new Book();
         Author neuA= new Author();
         neuA.setFirstName(bookI.getFirstNameAuthor());

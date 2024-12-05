@@ -11,7 +11,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 
-@WebServlet(name= "BookServlet", urlPatterns={"/lib/*"}, loadOnStartup = 1)
+@WebServlet(name= "BookServlet", urlPatterns={"/booksgraphql/*"}, loadOnStartup = 1)
 public class BookServlet extends GraphQLHttpServlet {
     public BookServlet(){
         System.out.println("GraphQL \"BookServlet\" started");

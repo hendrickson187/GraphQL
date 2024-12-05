@@ -32,6 +32,7 @@ import graphql.kickstart.tools.GraphQLMutationResolver;
 
 public class PersonMutationResolver implements GraphQLMutationResolver {
 	public Person create(final String firstName, final String lastName) {
+		System.out.println("Create started!");
 		final Person person = new Person();
 		person.setFirstName(firstName);
 		person.setLastName(lastName);

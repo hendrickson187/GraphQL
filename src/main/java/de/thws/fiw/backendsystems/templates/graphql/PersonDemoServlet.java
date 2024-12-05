@@ -35,13 +35,13 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 
-@WebServlet( name = "ServletExample", urlPatterns = { "/graphql/*" }, loadOnStartup = 1 )
+@WebServlet( name = "ServletExample", urlPatterns = { "/persongraphql/*" }, loadOnStartup = 1 )
 public class
 PersonDemoServlet extends GraphQLHttpServlet
 {
 	public PersonDemoServlet( )
 	{
-		System.out.println("GraphQL Servlet starts" );
+		System.out.println("GraphQL PersonServlet starts" );
 	}
 
 	@Override

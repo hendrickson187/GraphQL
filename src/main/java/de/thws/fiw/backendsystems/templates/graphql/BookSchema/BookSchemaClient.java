@@ -1,4 +1,4 @@
-package de.thws.fiw.backendsystems.templates.graphql;
+package de.thws.fiw.backendsystems.templates.graphql.BookSchema;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class PersonSchemaClient {
+public class BookSchemaClient {
 
-    private static final String GRAPHQL_ENDPOINT = "http://localhost:8080/persongraphql";
+    private static final String GRAPHQL_ENDPOINT = "http://localhost:8080/booksgraphql";
 
     // Methode, um GraphQL-Anfragen zu senden
     public static String sendRequest(String query) throws Exception {
@@ -74,18 +74,19 @@ public class PersonSchemaClient {
 
     public static void main(String[] args) {
         try {
-            // Beispiel: Query ausführen
-            String query = "{ persons { id firstName lastName } }";
-            String queryResponse = sendRequest(query);
-            System.out.println("Query Response: " + queryResponse);
-
             // Beispiel: Mutation ausführen
-            String mutation = "mutation { create(firstName: \"John\", lastName: \"Doe\") { id firstName lastName } }";
+            String mutation = "mutation { create(BookInput(lastNameAuthor: \"Finn\", firstNameAuthor:\"Krappitz\", titel: \"How to do\", iSBN:\"123433\") { title iSBN } }";
             String mutationResponse = sendRequest(mutation);
             System.out.println("Mutation Response: " + mutationResponse);
 
+
+            // Beispiel: Query ausführen
+            String query = "{ books { title author id } }";
+            String queryResponse = sendRequest(query);
+            System.out.println("Query Response: " + queryResponse);
+
             //Beispiel: Query mit Variabeln
-            String queryVariables = "query GetPerson($id: Int!) { person(id: $id) { id firstName lastName } }";
+            String queryVariables = "query bookById($id: Int!) { book(id: $id) { id iSBN Author {lastName firstName} } }";
             String variables = "{\"id\": 1}";
             String response = sendRequestWithVariables(queryVariables, variables);
             System.out.println("Variables Response: " + response);
@@ -95,3 +96,4 @@ public class PersonSchemaClient {
         }
     }
 }
+
