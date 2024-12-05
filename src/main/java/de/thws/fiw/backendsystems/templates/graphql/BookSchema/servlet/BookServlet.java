@@ -14,7 +14,7 @@ import java.io.IOException;
 @WebServlet(name= "BookServlet", urlPatterns={"/booksgraphql/*"}, loadOnStartup = 1)
 public class BookServlet extends GraphQLHttpServlet {
     public BookServlet(){
-        System.out.println("GraphQL \"BookServlet\" started");
+        System.out.println("GraphQL BookServlet started");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class BookServlet extends GraphQLHttpServlet {
         try
         {
             final String schemaString = IOUtils.toString( this.getClass( )
-                    .getResourceAsStream( "/schema.graphqls" ) );
+                    .getResourceAsStream( "/bookSchema.graphqls" ) );
 
             return SchemaParser.newParser( )
                     .schemaString( schemaString )

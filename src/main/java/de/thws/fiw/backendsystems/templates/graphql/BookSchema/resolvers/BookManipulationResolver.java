@@ -10,7 +10,7 @@ import graphql.kickstart.tools.GraphQLMutationResolver;
 public class BookManipulationResolver implements GraphQLMutationResolver {
 
     public Book create(final BookInput bookI){
-        System.out.println("Create started");
+        System.out.println("Creating Book...");
         Book neu= new Book();
         Author neuA= new Author();
         neuA.setFirstName(bookI.getFirstNameAuthor());
@@ -24,7 +24,7 @@ public class BookManipulationResolver implements GraphQLMutationResolver {
     }
 
     public Book update(final BookInput Input){
-        System.out.println("update started");
+        System.out.println("Updating Book...");
         if(BookInMemoryStorage.getInstance().readById(Input.getId()).isPresent()){
             Book book=(Book)BookInMemoryStorage.getInstance().readById(Input.getId()).get();
             book.setTitel(Input.getTitel());
@@ -40,6 +40,7 @@ public class BookManipulationResolver implements GraphQLMutationResolver {
 
     }
     public Boolean delete(final int id){
+        System.out.println("Deleting Book...");
         if(BookInMemoryStorage.getInstance().readById(id).isPresent()){
             BookInMemoryStorage.getInstance().delete(id);
             return true;

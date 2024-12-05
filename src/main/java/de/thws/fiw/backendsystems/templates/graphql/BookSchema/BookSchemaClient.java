@@ -81,7 +81,7 @@ public class BookSchemaClient {
 
 
             // Beispiel: Query ausführen
-            String query = "{ books { title author id } }";
+            String query = "{ books { titel id } }";
             String queryResponse = sendRequest(query);
             System.out.println("Query Response: " + queryResponse);
 
