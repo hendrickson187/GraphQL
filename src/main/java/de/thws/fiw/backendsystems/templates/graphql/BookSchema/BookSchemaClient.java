@@ -74,23 +74,42 @@ public class BookSchemaClient {
 
     public static void main(String[] args) {
         try {
-            // Beispiel: Mutation ausführen
-            String mutation = "mutation { create(BookInput(lastNameAuthor: \"Finn\", firstNameAuthor:\"Krappitz\", titel: \"How to do\", iSBN:\"123433\") { title iSBN } }";
+            // Beispiel: Create ausführen
+            String mutation = "mutation { create(Input: { lastNameAuthor: \"Finn\", firstNameAuthor: \"Krappitz\", titel: \"Book One\", iSBN: \"blabla\" }) { titel iSBN } }";
             String mutationResponse = sendRequest(mutation);
-            System.out.println("Mutation Response: " + mutationResponse);
-
+            System.out.println("Create Response: " + mutationResponse);
 
             // Beispiel: Query ausführen
             String query = "{ books { titel id } }";
             String queryResponse = sendRequest(query);
             System.out.println("Query Response: " + queryResponse);
 
+            // Beispiel: Update ausführen
+            String updateString = "mutation { update(Input: { lastNameAuthor: \"Krappitz\", firstNameAuthor: \"Finn\", titel: \"Oasch\", iSBN: \"toptoptop\", id:1}) { titel iSBN } }";
+            String updateResponse = sendRequest(updateString);
+            System.out.println("Update Response: " + updateResponse);
+
             //Beispiel: Query mit Variabeln
-            String queryVariables = "query bookById($id: Int!) { book(id: $id) { id iSBN Author {lastName firstName} } }";
+            String queryVariables = "query bookById($id: Int!) { bookById(id: $id) { id iSBN } }";
             String variables = "{\"id\": 1}";
             String response = sendRequestWithVariables(queryVariables, variables);
             System.out.println("Variables Response: " + response);
 
+            //bookByTitel
+            String byTitel = "query bookByTitel{ bookByTitel(titel:\"Oasch\") { id titel } }";
+            String byTitelResponse = sendRequest(byTitel);
+            System.out.println("By Titel Response: " + byTitelResponse);
+
+
+            // Beispiel: Delete ausführen
+            String deleteString = "mutation deleteId($id: Int!) { delete(id: $id) }";
+            String deleteResponse = sendRequestWithVariables(deleteString, variables);
+            System.out.println("Update Response: " + deleteResponse);
+
+            // Beispiel: Query ausführen
+            String query2 = "{ books { titel id } }";
+            String queryResponse2 = sendRequest(query2);
+            System.out.println("Query Response: " + queryResponse2);
         } catch (Exception e) {
             e.printStackTrace();
         }

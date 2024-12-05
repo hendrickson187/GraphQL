@@ -21,6 +21,7 @@ input BookInput{
 type Query{
     bookById(id:Int!) : Book
     books: [Book!]!
+    bookByTitel(titel: String!): Book
 }
 
 type Mutation{

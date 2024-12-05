@@ -74,21 +74,41 @@ public class PersonSchemaClient {
 
     public static void main(String[] args) {
         try {
+            // Beispiel: Mutation ausführen
+            String mutation = "mutation { create(firstName: \"Krappitz\", lastName: \"Finn\") { id firstName lastName } }";
+            String mutationResponse = sendRequest(mutation);
+            System.out.println("Mutation Response: " + mutationResponse);
+
             // Beispiel: Query ausführen
             String query = "{ persons { id firstName lastName } }";
             String queryResponse = sendRequest(query);
             System.out.println("Query Response: " + queryResponse);
 
             // Beispiel: Mutation ausführen
-            String mutation = "mutation { create(firstName: \"John\", lastName: \"Doe\") { id firstName lastName } }";
-            String mutationResponse = sendRequest(mutation);
-            System.out.println("Mutation Response: " + mutationResponse);
+            String update = "mutation { update(person: {id:1, firstName:\"Finn\", lastName:\"Krappitz\"}){ id firstName lastName } }";
+            String updateResponse = sendRequest(update);
+            System.out.println("Mutation Response: " + updateResponse);
+
+            // Beispiel: Query ausführen
+            String query2 = "{ persons { id firstName lastName } }";
+            String queryResponse2 = sendRequest(query2);
+            System.out.println("Query Response: " + queryResponse2);
 
             //Beispiel: Query mit Variabeln
             String queryVariables = "query GetPerson($id: Int!) { person(id: $id) { id firstName lastName } }";
             String variables = "{\"id\": 1}";
             String response = sendRequestWithVariables(queryVariables, variables);
             System.out.println("Variables Response: " + response);
+
+            // Beispiel: Mutation ausführen
+            String delete = "mutation { delete(id:1) }";
+            String deleteResponse = sendRequest(delete);
+            System.out.println("Mutation Response: " + deleteResponse);
+
+            // Beispiel: Query ausführen
+            String query3 = "{ persons { id firstName lastName } }";
+            String queryResponse3 = sendRequest(query3);
+            System.out.println("Query Response: " + queryResponse3);
 
         } catch (Exception e) {
             e.printStackTrace();

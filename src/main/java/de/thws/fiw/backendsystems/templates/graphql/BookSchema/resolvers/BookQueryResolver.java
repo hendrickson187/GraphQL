@@ -24,4 +24,18 @@ public class BookQueryResolver implements GraphQLQueryResolver {
     public List<Book> books(){
         return BookInMemoryStorage.getInstance().readByPredicate(p -> true);
     }
+
+    public Book bookByTitel(String titel){
+        for(Book book : books()){
+            if(book.getTitel().equals(titel)){
+                return book;
+            }
+        }
+        return null;
+        /*return books()
+                .stream()
+                .filter(book -> book.getTitel().equalsIgnoreCase(titel))
+                .findFirst()
+                .orElse(null);*/
+    }
 }

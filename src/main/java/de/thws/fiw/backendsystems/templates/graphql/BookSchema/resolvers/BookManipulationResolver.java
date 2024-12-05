@@ -11,6 +11,10 @@ public class BookManipulationResolver implements GraphQLMutationResolver {
 
     public Book create(final BookInput bookI){
         System.out.println("Creating Book...");
+        if (bookI == null) {
+            throw new IllegalArgumentException("BookInput cannot be null.");
+        }
+
         Book neu= new Book();
         Author neuA= new Author();
         neuA.setFirstName(bookI.getFirstNameAuthor());
@@ -25,6 +29,10 @@ public class BookManipulationResolver implements GraphQLMutationResolver {
 
     public Book update(final BookInput Input){
         System.out.println("Updating Book...");
+        if (Input == null) {
+            throw new IllegalArgumentException("Invalid input: ID and BookInput must not be null.");
+        }
+
         if(BookInMemoryStorage.getInstance().readById(Input.getId()).isPresent()){
             Book book=(Book)BookInMemoryStorage.getInstance().readById(Input.getId()).get();
             book.setTitel(Input.getTitel());
