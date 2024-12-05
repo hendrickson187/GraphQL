@@ -2,6 +2,10 @@ type Author{
     lastName: String!
     firstName: String!
 }
+input AuthorInput{
+    lastName: String!
+    firstName: String!
+}
 type Book{
     titel: String!
     iSBN: String!
@@ -22,6 +26,7 @@ type Query{
     bookById(id:Int!) : Book
     books: [Book!]!
     bookByTitel(titel: String!): Book
+    booksByAuthor(author: AuthorInput!): [Book!]!
 }
 
 type Mutation{
